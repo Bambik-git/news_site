@@ -18,14 +18,19 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from news.views import *
+import debug_toobar
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomeNews.as_view(), name='home'),
-    path('news/', include("news.urls")),
-    path('category/<int:category_id>/', NewsByCategory.as_view(), name='category')
+    path('', include("news.urls")),
+
 ]
 
+
 if settings.DEBUG:
+
+    urlpatterns = [
+                      path('__debug__/', include(debug_toolbar.urls)),
+                  ] + urlpatterns
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

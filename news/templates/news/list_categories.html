@@ -3,8 +3,10 @@
     <a href=" {{ item.get_absolute_url }}"
        class="list-group-item list-group-item-action"
        aria-current="true">{{ item.title }}
+        {% if item.cnt %}
+        <span class="badge bg-warning rounded-pill" style="color: #000000">{{ item.cnt }}</span>
+        {% endif %}
     </a>
+
     {% endfor %}
 </div>
-
-{# {% url 'category' item.id  %} #}

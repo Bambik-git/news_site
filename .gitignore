@@ -23,7 +23,7 @@ db.sqlite3
 
 
 mysite/secret_key.py
-mysite_cache/
+news_cache/
 
 
 venv/

@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block sidebar %}
-    {% include 'inc/_sidebar.html'%}
+{% include 'inc/_sidebar.html'%}
 {% endblock %}
 
 {% block content %}
@@ -17,12 +17,6 @@
 <form action="{% url 'add_news' %}" method="post">
 
     {% csrf_token %}
-
-    {% comment %}
-    {{ form.as_p }}
-    {% endcomment %}
-
-    {% comment %}
 
     {{form.non_field.errors}}
     <div class="form-group">
@@ -56,20 +50,9 @@
             {{form.category.errors}}
         </div>
     </div>
-    {% endcomment %}
 
-    {% for field in form %}
-    <div class="form_group">
-       {{ field.label_tag }} >
-        {{ field }}
-        <div class="invalid-feedback">
-            {{ form.errors }}
-        </div>
-    </div>
 
-    {% endfor %}
-
-    <button type="submit" class="btn btn-primary btn-block"> Добавить новость</button>
+    <button type="submit" class="btn btn-warning btn-block" style="color: #495057"> Добавить новость</button>
 </form>
 
 {% endblock %}

@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 
-{{ news_item.title }} :: {{ block.super }}
+{{ title }} :: {{ block.super }}
 
 {% endblock %}
 
@@ -12,23 +13,26 @@
 
 {% block content %}
 
+
     <div class="card mb-3">
         <div class="card-header">
-            Категория: <a href="{{ news_item.category.get_absolute_url }}"> {{ news_item.category }} </a>
+            Категория: <a href="{{ news.category.get_absolute_url }}"> {{ news.category }} </a>
         </div>
         <div class="card-body">
+            <h5 class="card-title">{{ news.title }}</h5>
             <div class="media">
-                {% if news_item.photo %}
-                <img src='{{ news_item.photo.url}}' alt="" width="400" class="mr-3">
+                {% if news.photo %}
+                <img src='{{ item.photo.url}}' alt="" width="400" class="mr-5" align="left">
+                {% else %}
+                <img src='{% static 'photo/default_news_photo.jpg' %}' alt="" width="400" class="mr-5" align="left">
                 {% endif %}
                 <div class="media-body">
-                    <h5 class="card-title">{{ news_item.title }}</h5>
-                    <p class="card-text">{{ news_item.content|safe|linebreaks}}</p>
+                    <p class="card-text">{{ news.content}}</p>
                 </div>
             </div>
         </div>
         <div class="card-footer text-muted">
-            {{ news_item.created_at|date:"Y-m-d H:i:s" }}
+            {{ news.created_at|date:"Y-m-d H:i:s" }} | Просмотров: {{news.views}}
         </div>
     </div>
 
